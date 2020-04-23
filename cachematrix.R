@@ -10,7 +10,7 @@ makeCacheMatrix <- function(x = matrix()) {
     i <<- NULL
   }
   get <- function() x
-  setInv <- function(solveMatrix) i <<- solveMatrix
+  setInv <- function(inv) i <<- inv
   getInv <- function() i
   list(set = set, get = get, setInv = setInv, getInv = getInv)
 }
@@ -30,5 +30,9 @@ cacheSolve <- function(x, ...) {
   x$setInv(i)
   i
 }
+A <- matrix( c(5, 1, 0,3,-1, 2, 4, 0,-1), nrow=3, byrow=TRUE)
+B <- matrix( c(5, 4, -1,5,0 , -3, 2, 8,-6), nrow=3, byrow=TRUE)
 mt <- matrix(1:4, nrow = 2, ncol = 2)
+cacheSolve(makeCacheMatrix(A))
+cacheSolve(makeCacheMatrix(B))
 cacheSolve(makeCacheMatrix(mt))
